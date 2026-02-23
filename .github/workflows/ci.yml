@@ -41,8 +41,10 @@ jobs:
         mysql -h 127.0.0.1 -u root damncrud < DamnCRUD/db/damncrud.sql
 
     - name: Run PHP Application Server in Background
+      env:
+        PHP_CLI_SERVER_WORKERS: 5
       run: |
-        php -S 127.0.0.1:8000 &
+        php -S localhost:8000 &
         sleep 3 # Tunggu sebentar agar server web PHP benar-benar Listen
 
     - name: Setup Python

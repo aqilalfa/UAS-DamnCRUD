@@ -27,8 +27,8 @@ def driver():
     driver.find_element(By.ID, "inputPassword").send_keys("nimda666!")
     driver.find_element(By.CSS_SELECTOR, "button[type='submit']").click()
     
-    # Beri jeda secukupnya agar login tertangkap CI/CD
-    time.sleep(1) 
+    # Tunggu secara eksplisit (Maximum 10 detik) hingga Browser mengalihkan halaman menuju ID "employee" (Dashboard)
+    WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.ID, 'employee')))
     
     yield driver
     
